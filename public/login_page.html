@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>
+            Log-in page
+        </h2>
+            
+        <script>
+            function validateForm(){
+                var x = document.forms["loginForm"]["id"].value;
+                if(x==""){
+                    alert("Id must be filled out");
+                    return false;
+                }
+                var y = document.forms["loginForm"]["pw"].value;
+                if(y==""){
+                    alert("PW must be filled out");
+                    return false;
+                }
+                else{
+                    return x+','+y;
+                }
+            }
+        </script>
+        <form name="loginForm" action="/login" target="_blank" onsubmit="return validateForm()" method="post">
+            Id:
+            <input type = "text" name="id">
+            PW:
+            <input type = "password" name="pw">
+            <button>
+                Login
+            </button>
+
+        </form>
+        
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>
+            Sign-in page
+        </h2>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+            function validateForm(){
+                var x = document.forms["signinForm"]["id"].value;
+                if(x==""){
+                    alert("Id must be filled out");
+                    return false;
+                }
+                var y = document.forms["signinForm"]["pw"].value;
+                if(y==""){
+                    alert("PW must be filled out");
+                    return false;
+                }
+                else{
+                    return x+','+y;
+                }
+                
+            }
+            function idCheck(){
+                var id = document.forms['signinForm']['id'].value; 
+                console.log(id);                  
+                $.ajax({
+                    url:'/checkId',
+                    dataType:'json',
+                    type:'POST',
+                    data:{data:id},
+                    success:function(result){
+                        if(result){
+
+                            $('#post_output').html(result.result);
+                        }
+                    }
+                });
+            }
+           
+            
+        </script>
+           
+            
+        
+        <form name="signinForm" target="_blank" onsubmit="validateForm()" action="/signin"  method="post">
+            Id:
+            <input type = "text" name="id">
+            <button type="button" onclick="idCheck()"> idCheck</button>
+            <p id = 'post_output'> insert your id </p>
+            PW:
+            <input type = "password" name="pw">
+            <input type = "submit"  name= "signin"/>
+        </form>
+        
+        
+    </body>
+</html>
